@@ -11,7 +11,7 @@
 // 2. 값이 있으면 오름차순으로 정렬한다.
 // 3. 값이 없으면 -1을 리턴한다.
 
-// 통과한 코드 (21.04.29)
+// 통과한 코드 (21.04.30)
 // 시간복잡도 O(N) / 모든요소를 다 한번씩 확인해서
 function solution(arr, divisor) {
   // 배열의 요소가 divisor 로 나누어 떨어지면
@@ -27,6 +27,19 @@ function solution(arr, divisor) {
   return answer.sort((a, b) => {
     return a - b
   })
+}
+
+// 리팩토링 (21.04.30)
+// 시간복잡도 O(N) / for 문으로도 충분히 잘 돌아간다.
+function solution(arr, divisor) {
+  let answer = []
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % divisor === 0) {
+      answer.push(arr[i])
+    }
+  }
+  return answer.length !== 0 ?
+    answer.sort((a, b) => a - b) : [-1]
 }
 
 // 실행코드
