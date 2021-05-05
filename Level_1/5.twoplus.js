@@ -14,29 +14,29 @@
 
 // 통과한 코드 (21.05.05)
 // 시간복잡도 O(N) / 모든요소를 다 한번씩 확인해서
-// function solution(numbers) {
-//   // 다 더하기
-//   let plusArr = [];
-//   for (let i = 0; i < numbers.length; i++) {
-//     for (let j = i + 1; j < numbers.length; j++) {
-//       if (i === j) {
-//         continue;
-//       } else {
-//         plusArr.push(numbers[i] + numbers[j])
-//       }
-//     }
-//   }
-//   // 정렬
-//   plusArr.sort((a, b) => a - b)
-//   // 같은 수 제외
-//   let answer = [];
-//   for (let i = 0; i < plusArr.length; i++) {
-//     if (answer[answer.length - 1] !== plusArr[i]) {
-//       answer.push(plusArr[i])
-//     }
-//   }
-//   return answer;
-// }
+function solution(numbers) {
+  // 다 더하기
+  let plusArr = [];
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (i === j) {
+        continue;
+      } else {
+        plusArr.push(numbers[i] + numbers[j])
+      }
+    }
+  }
+  // 정렬
+  plusArr.sort((a, b) => a - b)
+  // 같은 수 제외
+  let answer = [];
+  for (let i = 0; i < plusArr.length; i++) {
+    if (answer[answer.length - 1] !== plusArr[i]) {
+      answer.push(plusArr[i])
+    }
+  }
+  return answer;
+}
 
 // 리팩토링 (21.05.05)
 function solution(numbers) {
