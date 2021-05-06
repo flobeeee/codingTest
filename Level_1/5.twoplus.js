@@ -13,7 +13,7 @@
 // 4. 같은 숫자는 한 개씩만 놔두기
 
 // 통과한 코드 (21.05.05)
-// 시간복잡도 O(N) / 모든요소를 다 한번씩 확인해서
+// 시간복잡도 O(N²) / 이중 for 문
 function solution(numbers) {
   // 다 더하기
   let plusArr = [];
@@ -39,6 +39,7 @@ function solution(numbers) {
 }
 
 // 리팩토링 (21.05.05)
+// 시간복잡도 O(N²) / 이중 for 문
 function solution(numbers) {
   // 다 더하기
   let answer = [];
