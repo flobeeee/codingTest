@@ -51,4 +51,4 @@ console.log(solution(5, [2, 4], [1, 3, 5]));
 console.log(solution(2, [2, 1], [1, 2])) // -> 
 console.log(solution(12, [1, 2, 3, 4, 8, 9, 10, 11], [9, 10] )) // -> 6
 
-// 링크 : https://programmers.co.kr/learn/courses/30/lessons/12906
+// 링크 : https://programmers.co.kr/learn/courses/30/lessons/42862
