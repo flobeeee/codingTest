@@ -25,9 +25,9 @@ function solution(a, b) {
     min = b;
     max = a;
   }
-  while (min < max) {
+  while (min <= max) {
     answer = answer + min;
-    min ++
+    min ++;
   }
   return answer;
 }
