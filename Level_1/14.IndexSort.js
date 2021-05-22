@@ -37,4 +37,4 @@ function solution(strings, n) {
 console.log(solution(["sun", "bed", "car"], 1));
 console.log(solution(["abce", "abcd", "cdx"], 2));
 
-// 링크 : https://programmers.co.kr/learn/courses/30/lessons/12906
+// 링크 : https://programmers.co.kr/learn/courses/30/lessons/12915
