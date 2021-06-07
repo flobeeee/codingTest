@@ -11,49 +11,52 @@
 // 대문자인지 확인 후 일정한 거리의 알파벳을 찾는다
 // 소문자인지 확인 후 일정한 거리의 알파벳을 찾는다
 // 빈공백인 경우 빈공백도 출력한다. ( 공백 여러개 적용필수 )
+// String.fromCharCode(65, 66, 67);  // "ABC"
 
-// 통과한 코드 (21.00.00)
-// 시간복잡도 O(n) O(n²) O(n log n) / 이유
-// 3차 도전 아스키코드를 이용해서 풀어야 할 것 같음.
+// 통과한 코드 (21.06.07)
+// 시간복잡도 O(n) / 각 인덱스 문자를 가져와서 대문자인지 소문자인지 확인 
+// 아스키코드를 이용해서 풀기
 function solution(s, n) {
-  var answer = '';
-  return answer;
-}
-
-
-// 실행코드
-console.log(solution("AB", 1));
-console.log(solution("AaZz",	1));
-console.log(solution("a B z",	26));
-
-// 링크 : https://programmers.co.kr/learn/courses/30/lessons/12926
-/* 2 차시도 : 테스트 통과가 안됨. 
-function solution(s, n) {
-  let arrStr = s.split('')
-  let eng = 'abcdefghijklnmopqrstuvwxyz';
-  let ENG = eng.toUpperCase();
+  let arrStr = s.split('');
   for (let i = 0; i < s.length; i ++) {
     if (s[i] === ' ') {
       continue;
     }
-    for (let lower = 0; lower < eng.length; lower ++) {
-      if (s[i] === eng[lower]) {
-        arrStr[i] = eng[(lower+n) % 26]
+    // 대문자
+    for (let J = 65; J <= 90; J++) {
+      if (s[i] === String.fromCharCode(J)) {
+        if (J + n > 90) {
+          arrStr[i] = String.fromCharCode(J + n - 26)
+        } else {
+          arrStr[i] = String.fromCharCode(J + n)
+        }
       }
     }
-    for (let upper = 0; upper < ENG.length; upper ++) {
-      if (s[i] === ENG[upper]) {
-        arrStr[i] = ENG[(upper+n) % 26]
+    // 소문자
+    for (let j = 97; j <= 122; j ++) {
+      if(s[i] === String.fromCharCode(j)) {
+        if (j + n > 122) {
+          arrStr[i] = String.fromCharCode(j + n - 26)
+        } else {
+          arrStr[i] = String.fromCharCode(j + n)
+        }
       }
     }
   }
   return arrStr.join('');
 }
-*/
 
-/* 1 차시도 : 공백이 2개면 2개의 공백을 넣고 싶은데 먹히지 않음
+
+// 실행코드
+console.log(solution("AB", 1));
+console.log(solution("abcdefghijklmnopqrstuvwxyz", 1));
+console.log(solution("a B z",	26));
+
+// 링크 : https://programmers.co.kr/learn/courses/30/lessons/12926
+
+/* 아스키 없이 풀기
 function solution(s, n) {
-  let eng = 'abcdefghijklnmopqrstuvwxyz';
+  let eng = 'abcdefghijklmnopqrstuvwxyz';
   let ENG = eng.toUpperCase();
   let answer = ''
   for (let i = 0; i < s.length; i ++) {
