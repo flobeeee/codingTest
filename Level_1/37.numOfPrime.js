@@ -9,10 +9,22 @@
 // 1보다 큰 숫자부터 n까지의 소수를 찾는다
 // 찾은 경우 카운트를 올린다.
 
-// 통과한 코드 (21.06.22)
-// 시간복잡도 O(n) O(n²) O(n log n) / 이유
+// 통과한 코드 (21.06.24) // 효율성은 통과못함
+function checkPrime(n) {
+  for(let i = 2; i <= Math.sqrt(n); i ++) {
+    if(n % i === 0) {
+      return false;
+    }
+  }
+  return true;    
+}
 function solution(n) {
-  var answer = 0;
+  let answer = 0;
+  for (let i = 2; i <= n; i ++) {
+    if (checkPrime(i)) {
+      answer = answer + 1;
+    }
+  }
   return answer;
 }
 
