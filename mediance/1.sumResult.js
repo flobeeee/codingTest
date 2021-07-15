@@ -18,7 +18,7 @@
 // 합이 기준값보다 작으면 left를 움직이고, 합이 기준갑보다 크면 right를 움직인다.
 // 5. 합이 기준값과 같으면, answer 배열에 push 한다.
 // 6. left 와 right 의 값이 같으면 종료한다.
-/*
+
 function solution1(arr, num) {
   let answer = []
   let flag = true
@@ -60,28 +60,60 @@ function solution1(arr, num) {
 }
 
 console.log(solution1([1, 2, 6, 7, 9, 11, 12], 13)) // [ [ 1, 12 ], [ 2, 11 ], [ 6, 7 ] ]
-console.log(solution1([12, 11, 9, 7, 6, 2, 1], 13)) // [ [ 1, 12 ], [ 2, 11 ], [ 6, 7 ] ]
-*/
+console.log(solution1([12, 11, 9, 7, 6, 2, 1], 13)) // [ [ 12, 1 ], [ 11, 2 ], [ 7, 6 ] ]
+
 // ? 두 번째 수도코드
-// 1. 입력받은 수 / 2 하여 binary search 로 가장 가까운 숫자를 찾는다.
-// 2. 배열의 처음과 끝 숫자를 확인해서 큰 수를 구한다.
+// 1. num / 2 하여 가장 가까운 숫자를 찾아 right에 할당한다. (advanced : binary search)
+// 2. left 에 right -1 을 할당한다.
+// 3. 만약 left 와 right 가 배열범위를 벗어나면 while 문을 종료한다.
+// 4. arr[left] 와 arr[right] 의 합이 num 이면 answer 배열에 push 한다.
+// 5. arr[left] 와 arr[right] 의 합이 num 보다 큰 경우,
+// 5-1. 증가하는 숫자 배열이면 left 를 -1 한다.
+// 5-2. 감소하는 숫자 배열이면 right 를 +1 한다.
+// 6. arr[left] 와 arr[right] 의 합이 num 보다 작은 경우,
+// 6-1. 증가하는 숫자 배열이면 right 를 +1 한다.
+// 6-2. 감소하는 숫자 배열이면 left 를 -1 한다.
 
 function solution2(arr, num) {
   let answer = []
-  let mid = Math.floor(num / 2)
   let flag = true
-  let left
   let right
+  if (arr[0] < arr[arr.length - 1]) {
+    const find = (el) => el > num / 2
+    right = arr.findIndex(find)
+  } else if (arr[0] > arr[arr.length - 1]) {
+    const find = (el) => el < num / 2
+    right = arr.findIndex(find)
+  }
+  let left = right - 1
 
   while (flag) {
-
+    if (left < 0 || right > arr.length - 1) {
+      flag = false
+    } else if (arr[left] + arr[right] === num) {
+      answer.push([arr[left], arr[right]])
+      left--
+      right++
+    } else if (arr[left] + arr[right] > num) {
+      if (arr[left] < arr[right]) {
+        left--
+      } else {
+        right++
+      }
+    } else {
+      if (arr[left] < arr[right]) {
+        right++
+      } else {
+        left--
+      }
+    }
   }
 
   return answer
 }
 
-console.log(solution2([1, 2, 6, 7, 9, 11, 12], 13)) // [ [ 1, 12 ], [ 2, 11 ], [ 6, 7 ] ]
-// console.log(solution2([12, 11, 9, 7, 6, 2, 1], 13)) // [ [ 1, 12 ], [ 2, 11 ], [ 6, 7 ] ]
+console.log(solution2([1, 2, 6, 7, 9, 11, 12], 13)) // [ [ 6, 7 ], [ 2, 11 ], [ 1, 12 ] ]
+console.log(solution2([12, 11, 9, 7, 6, 2, 1], 13)) // [ [ 7, 6 ], [ 11, 2 ], [ 12, 1 ] ]
 
 // ! 1차 제출
 
@@ -120,7 +152,7 @@ function solution1(arr, num) {
 }
 
 console.log(solution1([1, 2, 6, 7, 9, 11, 12], 13)) // [ [ 1, 12 ], [ 2, 11 ], [ 6, 7 ] ]
-console.log(solution1([12, 11, 9, 7, 6, 2, 1], 13)) // [ [ 1, 12 ], [ 2, 11 ], [ 6, 7 ] ]
+console.log(solution1([12, 11, 9, 7, 6, 2, 1], 13)) // [ [ 7, 6 ], [ 11, 2 ], [ 12, 1 ] ]
 */
 
 // ? 두 번째 수도코드
