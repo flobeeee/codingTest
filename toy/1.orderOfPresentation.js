@@ -15,32 +15,42 @@
 // K 와 일치하는지 확인한 후, 일치하면 인덱스를 리턴한다.
 
 function orderOfPresentation(N, K) {
-  let cases = []
   let nums = Array.from(Array(N + 1).keys())
-  nums.shift()
-  console.log(nums)
-  const makeCase = (arr) => {
-    let copyNums = arr.slice(0)
-    if (arr.length === N) {
-      cases.push(arr)
+  nums.shift() // 1부터 시작하게
+
+  let cases = []
+  let count = 0
+  let result = 0
+
+  const makeCase = (numArr, caseArr) => {
+    if (caseArr.length === N) {
+      if(String(caseArr) === String(K)) {
+        result = count
+      }
+      count ++
       return
     }
-    let arr1 = []
-    for (let i = 0; i < N; i++) {
-      arr.push(nums[i])
-
+    for (let i = 0; i < numArr.length; i++) {
+      let copyArr = [...numArr]
+      caseArr.push(numArr[i])
+      copyArr.splice(i, 1)
+      answer = [...caseArr]
+      makeCase(copyArr, answer)
+      if (result) {
+        break
+      }
+      caseArr.pop()
     }
   }
-  makeCase([])
-
-  return cases
+  makeCase(nums, [])
+  return result
 }
 
 let output = orderOfPresentation(3, [2, 3, 1]);
 console.log(output); // 3
 
-// output = orderOfPresentation(5, [1, 3, 2, 4, 5])
-// console.log(output); // 6
+output = orderOfPresentation(5, [1, 3, 2, 4, 5])
+console.log(output); // 6
 
 
 /*
@@ -63,3 +73,4 @@ const rockPaperScissors = function (round) {
   return boxs;
 };
 */
+
