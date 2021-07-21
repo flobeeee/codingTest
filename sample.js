@@ -8,7 +8,6 @@
 
 
 // 통과한 코드 (21.06.00)
-// 시간복잡도 O(n) O(n²) O(n log n) / 이유
 function solution(arr) {
 
 }
