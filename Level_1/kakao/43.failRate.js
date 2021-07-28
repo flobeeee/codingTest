@@ -14,12 +14,13 @@
 
 // 통과한 코드 (21.07.28)
 function solution(N, stages) {
-  var answer = {};
-  let stay = 0
-  let users = stages.length
+  let answer = []; // 1차 가공
+  let obj = {}
+  let stay = 0 // 못깨는 유저
+  let users = stages.length // 분모에 들어갈 숫자
   let flag = true
   let stage = 1
-  let user = 0
+  let user = 0 // 배열 훑기
   const sortStages = stages.sort((a, b) => a - b)
 
   while (flag) {
@@ -29,15 +30,22 @@ function solution(N, stages) {
       user++
       stay++
     } else {
-      answer[stage] = stay / users
+      obj[stage] = stay / users
+      answer.push(obj)
+      obj = {}
       stage++
       users = users - stay
       stay = 0
     }
   }
-  return answer;
-}
 
+  answer.sort((a, b) => Object.values(b) - Object.values(a))
+  let result = []
+  for (let i = 0; i < answer.length; i++) {
+    result.push(+Object.keys(answer[i]))
+  }
+  return result;
+}
 
 // 실행코드
 console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]));
