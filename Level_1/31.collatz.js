@@ -15,8 +15,8 @@
 // 재귀의 기초 num이 1이 되거나, answer이 500이상이 되면 리턴한다.
 // 콜라츠 추측의 조건들을 구현한다.
 
-// 통과한 코드 (21.06.12)
-// 시간복잡도 O(1) / 아무리 반복해도 500회까지만 작동하니까. O(500) 이다. O(500) = O(1)
+// 리팩토링 (21.08.16) 
+// 코드반복 지양하기 (1함수 1리턴 규칙 적용)
 function solution(num) {
   let answer = 0;
   const collatz = function(num) {
@@ -28,17 +28,37 @@ function solution(num) {
     answer ++;
     if (num % 2 === 0) {
       num = num / 2;
-      return collatz(num)
-    } else {
+    } else if (num % 2 !== 0) {
       num = num * 3 + 1;
-      return collatz(num)
     }
+    return collatz(num)
   }
   return collatz(num)
 }
-
 
 // 실행코드
 console.log(solution(6));
 
 // 링크 : https://programmers.co.kr/learn/courses/30/lessons/12943
+
+// 통과한 코드 (21.06.12)
+// 시간복잡도 O(1) / 아무리 반복해도 500회까지만 작동하니까. O(500) 이다. O(500) = O(1)
+// function solution(num) {
+//   let answer = 0;
+//   const collatz = function(num) {
+//     if (num === 1) {
+//       return answer;
+//     } else if (answer >= 500) {
+//       return -1;
+//     }
+//     answer ++;
+//     if (num % 2 === 0) {
+//       num = num / 2;
+//       return collatz(num)
+//     } else {
+//       num = num * 3 + 1;
+//       return collatz(num)
+//     }
+//   }
+//   return collatz(num)
+// }
