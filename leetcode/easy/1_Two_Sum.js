@@ -18,7 +18,7 @@
 // 2. target 보다 큰 수는 지나간다.
 // 3. 임시로 저장한 수와 합쳐서 target가 되면 두 수의 index를 리턴한다.
 
-// 통과한 코드 (23.00.00)
+// 통과한 코드 (23.01.26)
 /**
  * @param {number[]} nums
  * @param {number} target
